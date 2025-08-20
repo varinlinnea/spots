@@ -1,19 +1,34 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css';
+import AddSpotForm from './AddSpotForm';
+
+const MAPBOX_TOKEN = "pk.eyJ1IjoidmFyaW5saW5uZWEiLCJhIjoiY21laDVlb3NhMDRuMzJscjRidGNwa202cCJ9.Lbg2FLMJBBRI6cvoy31RFA"
 
 export default function MapView({ spots }) {
     const mapRef = useRef();
     const mapContainerRef = useRef();
 
+    const [clickedCoords, setClickedCoords] = useState(null);
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const staticMapUrl = clickedCoords ? `https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/pin-s+ff0000(${clickedCoords.lng},${clickedCoords.lat})/${clickedCoords.lng},${clickedCoords.lat},14,0/600x300?access_token=${MAPBOX_TOKEN}`: null;
+
+
     useEffect(() => {
-        mapboxgl.accessToken = 'pk.eyJ1IjoidmFyaW5saW5uZWEiLCJhIjoiY21laDVlb3NhMDRuMzJscjRidGNwa202cCJ9.Lbg2FLMJBBRI6cvoy31RFA'
+        mapboxgl.accessToken = MAPBOX_TOKEN;
         mapRef.current = new mapboxgl.Map({
             container: mapContainerRef.current,
             center: [10.2564, 60.1680],
             zoom: 12,
             style: 'mapbox://styles/mapbox/standard-satellite',
         });
+        mapRef.current.on('click', (e) => {
+            setClickedCoords(e.lngLat);
+            setModalOpen(true);
+            console.log(e.lngLat)
+            console.log(modalOpen)
+        })
 
         return () => {
             mapRef.current.remove()
@@ -34,6 +49,25 @@ export default function MapView({ spots }) {
     return (
         <>
             <div id='map-container' ref={mapContainerRef}/>
+
+            {modalOpen && (
+                <div className="modal-overlay">
+                    <div className="modal">
+                        <button onClick={() => setModalOpen(false)}>X</button>
+                        <h2>Add new spot</h2>
+
+                        {staticMapUrl && (
+                            <img
+                                src={staticMapUrl}
+                                alt="Spot preview"
+                                className="staticMapPreview"
+                            />
+                        )}
+
+                        <AddSpotForm coords={clickedCoords}/>
+                    </div>
+                </div>
+            )}
         </>
     );
 }

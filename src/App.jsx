@@ -3,7 +3,7 @@ import supabase from './supabase'
 import NavBar from './components/NavBar';
 import MapView from './components/MapView';
 
-import './styles/App.css'
+import './styles/App.css';
 
  function App() {
 
