@@ -4,7 +4,6 @@ import NavBar from './components/NavBar';
 import MapView from './components/MapView';
 
 import './styles/App.css'
-import './styles/NavBar.css'
 
  function App() {
 
