@@ -6,7 +6,7 @@ import '../styles/Modal.css';
 
 const MAPBOX_TOKEN = "pk.eyJ1IjoidmFyaW5saW5uZWEiLCJhIjoiY21laDVlb3NhMDRuMzJscjRidGNwa202cCJ9.Lbg2FLMJBBRI6cvoy31RFA"
 
-export default function MapView({ spots }) {
+export default function MapView({ spots, setSpots }) {
     const mapRef = useRef();
     const mapContainerRef = useRef();
 
@@ -28,7 +28,6 @@ export default function MapView({ spots }) {
             setClickedCoords(e.lngLat);
             setModalOpen(true);
             console.log(e.lngLat)
-            console.log(modalOpen)
         })
 
         return () => {
@@ -41,7 +40,7 @@ export default function MapView({ spots }) {
         if (spot.longitude && spot.latitude) {
             new mapboxgl.Marker()
           .setLngLat([spot.longitude, spot.latitude])
-          .setPopup(new mapboxgl.Popup().setText(spot.name || "Unnamed Spot", spot.rating || "No rating"))
+          .setPopup(new mapboxgl.Popup().setText(spot.spotName || "Unnamed Spot", spot.rating || "No rating"))
           .addTo(mapRef.current);
         } 
         });
@@ -65,7 +64,7 @@ export default function MapView({ spots }) {
                             />
                         )}
 
-                        <AddSpotForm coords={clickedCoords}/>
+                        <AddSpotForm coords={clickedCoords} setSpots={setSpots}/>
                     </div>
                 </div>
             )}

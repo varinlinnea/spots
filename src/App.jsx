@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import supabase from './supabase'
+import supabase from './supabase';
 import NavBar from './components/NavBar';
 import MapView from './components/MapView';
 
@@ -25,11 +25,26 @@ import './styles/App.css';
     getSpots();
   }, []);
 
+  // // function for adding spot
+  // const addSpot = async (spotName, rating, description, longitude, latitude) => {
+  //   const { error } = await supabase
+  //   .from('spots')
+  //   .insert([{
+  //     spotName,
+  //     rating,
+  //     longitude,
+  //     latitude
+  //   }]);
+  //   if (error) {
+  //     console.log(error);
+  //   }
+  // };
+
 
   return (
     <>
       <NavBar />
-      <MapView spots={spots}/>
+      <MapView spots={spots} setSpots={setSpots} />
     </>
   );
 }
