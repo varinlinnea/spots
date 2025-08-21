@@ -1,5 +1,8 @@
 .modal {
-  background: white;
+  background: rgba(195, 222, 143, 0.53);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(11.3px);
+  -webkit-backdrop-filter: blur(11.3px);
   border-radius: 8px;
   padding: 20px;
   width: 500px;
@@ -21,4 +24,17 @@
   align-items: center;
   justify-content: center;
   z-index: 1010;
+}
+
+.staticMapPreview {
+  max-height: 100%;
+  max-width: 100%;
+  border-radius: 8px;
+  border: 2px solid white;
+}
+
+.addSpotForm {
+  display: flex;
+  flex-direction: column;
+  color: white;
 }

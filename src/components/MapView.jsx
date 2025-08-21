@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from 'react'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css';
 import AddSpotForm from './AddSpotForm';
+import '../styles/Modal.css';
 
 const MAPBOX_TOKEN = "pk.eyJ1IjoidmFyaW5saW5uZWEiLCJhIjoiY21laDVlb3NhMDRuMzJscjRidGNwa202cCJ9.Lbg2FLMJBBRI6cvoy31RFA"
 
@@ -40,7 +41,7 @@ export default function MapView({ spots }) {
         if (spot.longitude && spot.latitude) {
             new mapboxgl.Marker()
           .setLngLat([spot.longitude, spot.latitude])
-          .setPopup(new mapboxgl.Popup().setText(spot.name || "Unnamed Spot"))
+          .setPopup(new mapboxgl.Popup().setText(spot.name || "Unnamed Spot", spot.rating || "No rating"))
           .addTo(mapRef.current);
         } 
         });
