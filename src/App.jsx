@@ -25,22 +25,6 @@ import './styles/App.css';
     getSpots();
   }, []);
 
-  // // function for adding spot
-  // const addSpot = async (spotName, rating, description, longitude, latitude) => {
-  //   const { error } = await supabase
-  //   .from('spots')
-  //   .insert([{
-  //     spotName,
-  //     rating,
-  //     longitude,
-  //     latitude
-  //   }]);
-  //   if (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-
   return (
     <>
       <NavBar />
