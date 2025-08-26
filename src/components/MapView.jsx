@@ -11,7 +11,7 @@ export default function MapView({ spots, setSpots }) {
     const [clickedCoords, setClickedCoords] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
 
-    const MAPBOX_TOKEN = import.meta.env.MAPBOX_TOKEN;
+    const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
 
     const staticMapUrl = clickedCoords ? `https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/pin-s+ff0000(${clickedCoords.lng},${clickedCoords.lat})/${clickedCoords.lng},${clickedCoords.lat},14,0/600x300?access_token=${MAPBOX_TOKEN}`: null;
 
