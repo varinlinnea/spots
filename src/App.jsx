@@ -16,7 +16,6 @@ import './styles/App.css';
         console.log(error);
         return;
       }
-      console.log('data:', data);
 
       if (data) {
         setSpots(data);

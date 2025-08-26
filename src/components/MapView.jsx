@@ -27,7 +27,6 @@ export default function MapView({ spots, setSpots }) {
         mapRef.current.on('click', (e) => {
             setClickedCoords(e.lngLat);
             setModalOpen(true);
-            console.log(e.lngLat)
         })
 
         return () => {
