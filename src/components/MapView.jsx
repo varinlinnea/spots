@@ -4,8 +4,6 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import AddSpotForm from './AddSpotForm';
 import '../styles/Modal.css';
 
-const MAPBOX_TOKEN = "pk.eyJ1IjoidmFyaW5saW5uZWEiLCJhIjoiY21laDVlb3NhMDRuMzJscjRidGNwa202cCJ9.Lbg2FLMJBBRI6cvoy31RFA"
-
 export default function MapView({ spots, setSpots }) {
     const mapRef = useRef();
     const mapContainerRef = useRef();
