@@ -63,7 +63,7 @@ export default function MapView({ spots, setSpots }) {
                             />
                         )}
 
-                        <AddSpotForm coords={clickedCoords} setSpots={setSpots}/>
+                        <AddSpotForm coords={clickedCoords} setSpots={setSpots} setModalOpen={setModalOpen}/>
                     </div>
                 </div>
             )}

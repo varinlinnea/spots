@@ -2,7 +2,7 @@ import { useState } from 'react';
 import supabase from '../supabase';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-export default function AddSpotForm({ coords, setSpots }) {
+export default function AddSpotForm({ coords, setSpots, setModalOpen }) {
 
     const addSpot = async (spotData) => {
         const { data, error } = await supabase
@@ -41,6 +41,7 @@ export default function AddSpotForm({ coords, setSpots }) {
         e.preventDefault();
         addSpot(spotData);
         setSpotData({});
+        setModalOpen(false);
     }
 
 
