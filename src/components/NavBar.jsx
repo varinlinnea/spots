@@ -8,6 +8,7 @@ export default function NavBar() {
                 <h1>Spots</h1>
             </div>
             <div className="navBarRight">
+                <button>Log in</button>
             </div>
         </div>
     );

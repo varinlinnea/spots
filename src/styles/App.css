@@ -1,13 +1,65 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
 #root {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+
+
+--primary: #4b6043;
+--primary-content: #cdd9c9;
+--primary-dark: #34422e;
+--primary-light: #627e58;
+
+--secondary: #435960;
+--secondary-content: #c9d5d9;
+--secondary-dark: #2e3d42;
+--secondary-light: #58757e;
+
+--background: #eef4eb;
+--foreground: #fbfcfa;
+--border: #dbe8d6;
+
+--copy: #22311c;
+--copy-light: #59824a;
+--copy-lighter: #7eac6d;
+
+--success: #436043;
+--warning: #606043;
+--error: #604343;
+--success-content: #c9d9c9;
+--warning-content: #d9d9c9;
+--error-content: #d9c9c9;
 }
 
 #map-container {
-  height: 100vh;
-  width: 100%;
+  height: 80vh;
   z-index: 1000;
+  border-radius: 12px;
+}
+
+.mainContentContainer {
+    background-color: var(--background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    min-height: 90vh;
 }

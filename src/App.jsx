@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import supabase from './supabase';
 import NavBar from './components/NavBar';
-import MapView from './components/MapView';
 
 import './styles/App.css';
+import MainContentContainer from './components/MainContentContainer';
 
  function App() {
 
@@ -26,8 +26,10 @@ import './styles/App.css';
 
   return (
     <>
-      <NavBar />
-      <MapView spots={spots} setSpots={setSpots} />
+        <NavBar />
+      <div className="mainContentContainer">
+        <MainContentContainer spots={spots} setSpots={setSpots} />
+      </div>
     </>
   );
 }

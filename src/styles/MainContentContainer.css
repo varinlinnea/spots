@@ -1,0 +1,21 @@
+.mainContentWrapper {
+    background-color: var(--foreground);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 24px;
+    width: 95%;
+    border: 1px solid var(--border);
+    padding: 12px;
+    height: 100%;
+    border-radius: 12px;
+    margin-top: 24px;
+}
+
+#contentNavBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
