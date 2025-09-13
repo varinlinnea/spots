@@ -25,8 +25,16 @@ export default function AddSpotForm({ coords, setSpots, setModalOpen }) {
         rating: 0,
         description: '',
         longitude: coords.lng,
-        latitude: coords.lat
+        latitude: coords.lat,
+        image_url: ''
     });
+    
+    const [imageFile, setImageFile] = useState(null);
+
+    const handleImageChange = (e) => {
+        setImageFile(e.target.files[0]);
+    };
+
 
     const handleChange = (e) => {
         const { name, type, value } = e.target;
@@ -37,8 +45,49 @@ export default function AddSpotForm({ coords, setSpots, setModalOpen }) {
         console.log(spotData);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        let imageUrl = "";
+        if (imageFile) {
+            const fileExt = imageFile.name.split('.').pop();
+            const fileName = `${Date.now()}.${fileExt}`;
+            const filePath = `${fileName}`;
+
+            let { error: uploadError } = await supabase
+                .storage
+                .from('spot-images')
+                .upload(filePath, imageFile);
+
+            if (uploadError) {
+                console.log(uploadError);
+                return;
+            }
+
+
+            const { data: { publicUrl } } = supabase
+                .storage
+                .from('spot-images')
+                .getPublicUrl(filePath);
+
+            imageUrl = publicUrl;
+        }
+        
+
+        const { data, error } = await supabase
+            .from('spots')
+            .insert([{
+                ...spotData,
+                image_url: imageUrl
+            }])
+            .select()
+            .single();
+
+        if (error) {
+            console.log(error);
+            return;
+        }
+
         addSpot(spotData);
         setSpotData({});
         setModalOpen(false);
@@ -54,6 +103,8 @@ export default function AddSpotForm({ coords, setSpots, setModalOpen }) {
                 <input type="number" id="rating" name="rating" onChange={handleChange}/>
                 <label htmlFor="description">Description</label>
                 <input type="text" id="description" name="description" onChange={handleChange}/>
+                <label htmlFor="image">Upload image</label>
+                <input type="file" id="image" name="image" onChange={handleImageChange}/>
                 <button type="submit">Add spot</button>
             </form>
         </>
